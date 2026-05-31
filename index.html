@@ -160,11 +160,14 @@
         }
 
         .servico-imagem {
-            width: 140px;
-            min-width: 140px;
-            height: auto;
+            width: 150px;
+            min-width: 150px;
+            height: 100%;
+            min-height: 150px;
             object-fit: cover; 
+            object-position: center;
             background-color: var(--brand-soft);
+            display: block;
         }
 
         .servico-conteudo {
@@ -446,7 +449,15 @@
             .hero h2 { font-size: 1.9rem; }
             
             .card-servico { flex-direction: column; }
-            .servico-imagem { width: 100%; height: 180px; }
+            
+            .servico-imagem { 
+                width: 100%; 
+                min-width: 100%;
+                height: 240px;
+                max-height: 300px;
+                object-fit: cover;
+            }
+            
             .servico-conteudo { padding: 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
             .info-grupo { max-width: 100%; }
             .preco-acao-grupo { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; }
@@ -474,7 +485,7 @@
     <main class="main-container">
         
         <section class="catalogo-servicos">
-            <h3 class="secao-titulo">Estilos Disponíveis</h3>
+            <h2 class="secao-titulo">Estilos Disponíveis</h2>
             <div class="lista-servicos">
                 
                 <div class="card-servico">
@@ -583,7 +594,7 @@
                             <p>Moldura delicada feita com o próprio cabelo contornando o topo da cabeça como uma coroa.</p>
                         </div>
                         <div class="preco-acao-grupo">
-                            <span class="preco-tag">R$ 35,00</span>
+                            <span class="preco-tag">R$ 45,00</span>
                             <button class="btn-escolher" onclick="selecionarProcedimento('8')">Escolher</button>
                         </div>
                     </div>
@@ -646,7 +657,7 @@
                             <option value="5">05. Box Braids — R$ 45,00</option>
                             <option value="6">06. Trança Cascatas — R$ 40,00</option>
                             <option value="7">07. Goddess Braids — R$ 45,00</option>
-                            <option value="8">08. Trança Tiara — R$  45,00</option>
+                            <option value="8">08. Trança Tiara — R$ 45,00</option>
                             <option value="9">09. Trança Unicórnio — R$ 35,00</option>
                             <option value="10">10. Trança Raiz — R$ 40,00</option>
                         </select>
@@ -689,7 +700,7 @@
         </div>
     </div>
 
-    <a href="https://api.whatsapp.com/send?phone=5589999195459&text=Olá,%20Lara%20Hair!%20Gostaria%20de%20tirar%20uma%20dúvida." 
+    <a href="https://api.whatsapp.com/send?phone=5589999195459&text=Ol%C3%A1,%20Lara%20Hair!%20Gostaria%20de%20tirar%20uma%20d%C3%BAvida." 
        class="btn-whatsapp-flutuante" 
        target="_blank" 
        title="Tirar Dúvidas no WhatsApp">
@@ -699,7 +710,7 @@
     </a>
 
     <footer>
-        <p>© 2026 Lara Hair Studio. Atendimento personalizado.</p>
+        <p>&copy; 2026 Lara Hair Studio. Atendimento personalizado.</p>
     </footer>
 
     <script>
@@ -750,14 +761,14 @@
         }
 
         function enviarParaWhatsApp() {
-            const mensagemFinal = `Olá, Lara Hair! Quero confirmar meu agendamento:%0A%0A` +
-                `• *Cliente:* ${encodeURIComponent(cacheAgendamento.nome)}%0A` +
-                `• *Contato:* ${encodeURIComponent(cacheAgendamento.tel)}%0A` +
-                `• *Serviço:* ${encodeURIComponent(cacheAgendamento.estiloTexto)}%0A` +
-                `• *Data:* ${encodeURIComponent(cacheAgendamento.dataInvertida)}%0A` +
-                `• *Horário:* ${encodeURIComponent(cacheAgendamento.hora)}`;
+            const mensagemFinal = `Olá, Lara Hair! Quero confirmar meu agendamento:\n\n` +
+                `• *Cliente:* ${cacheAgendamento.nome}\n` +
+                `• *Contato:* ${cacheAgendamento.tel}\n` +
+                `• *Serviço:* ${cacheAgendamento.estiloTexto}\n` +
+                `• *Data:* ${cacheAgendamento.dataInvertida}\n` +
+                `• *Horário:* ${cacheAgendamento.hora}`;
 
-            const linkWhatsApp = `https://api.whatsapp.com/send?phone=${NUMERO_PROPRIETARIO}&text=${mensagemFinal}`;
+            const linkWhatsApp = `https://api.whatsapp.com/send?phone=${NUMERO_PROPRIETARIO}&text=${encodeURIComponent(mensagemFinal)}`;
             
             window.open(linkWhatsApp, '_blank');
             fecharModal();
